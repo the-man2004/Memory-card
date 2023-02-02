@@ -1,12 +1,21 @@
+import "../styles/cards.css";
 
 function FirstChoice(props) {
     return (
-        <div>
-            <ul>
-                <li onClick={props.first} >num1</li>
-                <li onClick={props.second} >num2</li>
-                <li onClick={props.third} >num3</li>
-                <li onClick={props.fourth} >num4</li>
+        <div className="ul-container">
+            <ul className="card-container">
+                <li onClick={props.first} >
+                    <div className="first"></div>
+                </li>
+                <li onClick={props.second} >
+                    <div className="second"></div>
+                </li>
+                <li onClick={props.third} >
+                    <div className="third"></div>
+                </li>
+                <li onClick={props.fourth} >
+                    <div className="fourth"></div>
+                </li>
             </ul>
         </div>
     )
