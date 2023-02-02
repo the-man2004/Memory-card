@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "../styles/main.css";
+
 import FirstChoice from "./FirstChoice";
 import SecondChoice from "./SecondChoice";
 import ThirdChoice from "./ThirdChoice";
@@ -61,7 +63,7 @@ function Main() {
     function fourth() {
         if (fourthCard === 0) {
             change();
-            setFourthCard(1);
+            setFourthCard();
         } else {
             change();
             setFirstCard(0);
@@ -84,22 +86,33 @@ function Main() {
         }
     }
 
+    function changeScore() {
+        if (score >= highScore) {
+            setHighScore(score);
+        } else if (highScore === 4) {
+            setHighScore(0);
+        } else {
+            setHighScore(highScore);
+        }
+    }
+
     function change() {
         setScore(score + 1);
-        console.log(score);
+        changeScore();
         changeCards();
-        console.log("hi")
     }
 
     return (
         <div className="container">
-            <div>first {firstCard}</div>
-            <div>second {secondCard}</div>
-            <div>third {thirdCard}</div>
-            <div>fourth {fourthCard}</div>
-            <br></br>
-            <div>score {score}</div>
-            <br></br>
+            <div className="score-container">
+                <div className="scores">score {score}</div>
+                {
+                    score >= highScore ? <div className="scores">highScore {score}</div> : <div className="scores">highScore {highScore}</div>
+                }
+            </div>
+            {
+                score === 4 ? <h2 className="win">You win!</h2> : <h2 className="win"></h2>
+            }
             {
                 cardOrder === 1 ? <FirstChoice score={score} first={first} second={second} third={third} fourth={fourth} />
                 : cardOrder === 2 ? <SecondChoice score={score} first={first} second={second} third={third} fourth={fourth} />
